@@ -15,8 +15,11 @@ window.MenuGroup = (function(win) {
   proto.calculateChildWidth = function() {
     var child = this.firstElementChild;
     var childWidth = 0;
+    var style;
     while(child) {
-      childWidth += child.clientWidth;
+      style = window.getComputedStyle(child);
+      childWidth += child.offsetWidth + parseInt(style.marginLeft, 10)
+                                      + parseInt(style.marginRight, 10);
       child = child.nextElementSibling;
     }
     return childWidth;
